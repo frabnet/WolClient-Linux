@@ -1,10 +1,17 @@
 #!/bin/sh
 
-echo "Sending request..."
-
-#Read configuration
-. "./wolclient.config"
 COOKIEFILE="wolclient.cookie"
+CONFIGFILE="wolclient.config"
+
+#Read config
+if [ -e "$CONFIGFILE" ]; then
+        . "./$CONFIGFILE"
+else
+        echo "Config file \"$CONFIGFILE\" not found."
+        exit 1
+fi
+
+echo "Sending request..."
 
 #Homepage
 RESPONSE=$(curl -sS --insecure --location --cookie-jar "$COOKIEFILE" "$PFSENSEURL")
@@ -24,3 +31,4 @@ echo "Result: $STATUS"
 RESPONSE=$(curl -sS --insecure --location --cookie "$COOKIEFILE" --cookie-jar "$COOKIEFILE" "$PFSENSEURL/index.php?logout" --data "__csrf_magic=$CSRF&logout=\"\"")
 
 rm "$COOKIEFILE"
+exit 0
