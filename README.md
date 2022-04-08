@@ -1,6 +1,6 @@
 # WolClient Linux
  
-A /bin/sh script to simplify power on of remote computers while connected via OpenVPN/pfSense VPN.  
+A shell script to simplify power on of remote computers while connected via OpenVPN/pfSense VPN.  
 This is a stripped down version of [WolClient](https://github.com/frabnet/WolClient) but for Linux users.
 
 ## pfSense setup / server side
@@ -17,7 +17,7 @@ This is a stripped down version of [WolClient](https://github.com/frabnet/WolCli
   - curl
   - grep
 - Create/edit `wolclient.config` with required settings:
-  - pfSense Hostname
+  - Remote PC mac address
   - pfSense Wake On Lan user
   - pfSense Wake On Lan password  
 - Run the script `sh wolclient.sh`
